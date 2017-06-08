@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">BonMeal</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="kitchen_challenge">تحدي الطبخ</string>
+    <string name="cook_book">كتاب الطبخ</string>
+    <string name="fridge">في الثلاجة</string>
+    <string name="my_recipes">وصفاتي</string>
+</resources>
