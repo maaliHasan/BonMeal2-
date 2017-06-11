@@ -22,13 +22,15 @@
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:fontFamily">bold</item>
-        <item name="fontPath">fonts/abuhmeda-f2.ttf</item>
+        <item name="fontPath">assets/fonts/abuhmeda-f2.ttf</item>
         <item name="android:textSize">30sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
 
     </style>
 
     <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
-        <item name="fontPath">fonts/GothamProBold.ttf</item>
+        <item name="fontPath">assets/fonts/GothamProBold.ttf</item>
         <item name="android:textSize">16sp</item>
     </style>
 

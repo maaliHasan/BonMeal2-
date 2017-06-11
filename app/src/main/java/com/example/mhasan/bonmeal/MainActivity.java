@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.res.Configuration;
 
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
@@ -13,11 +14,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,9 +54,20 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         String mActivityTitle = getTitle().toString();
-        getSupportActionBar().setTitle(mActivityTitle);
+
+        TextView tabOne = (TextView) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_title, null);
+        tabOne.setText("BONMEAL");
+        Typeface typeface=Typeface.createFromAsset(getAssets(),"fonts/GothamProBold.ttf");
+        tabOne.setTypeface(typeface);
+
+      //  getSupportActionBar().setTitle(mActivityTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER);
+
+        getSupportActionBar().setCustomView(tabOne);
 
         addDrawerItems();
         setupDrawer();
@@ -157,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                                 TextView tabOne = (TextView) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_tab, null);
                                 tabOne.setBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.kitchen_challenge));
                                 tabOne.setText(R.string.kitchen_challenge);
-                                // tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_cookchallenge, 0, 0);
+                                tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cookchallenge_24, 0, 0, 0);
                                 tabLayout.getTabAt(0).setCustomView(tabOne);
                                 break;
                             case 1:
