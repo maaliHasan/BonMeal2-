@@ -10,5 +10,11 @@
     <color name="cook_book">#FFEBD4</color>
     <color name="my_recipes">#E6F1D9</color>
     <color name="kitchen_challenge">#FDEBEA</color>
+    <!-- color of fonts-->
+
     <color name="title_text">#F49B94</color>
+    <color name="fridge_text">#26ABFC</color>
+    <color name="cook_text">#FF9C29</color>
+    <color name="recipes_text">#82B840</color>
+    <color name="kitchen_text">#F59C94</color>
 </resources>

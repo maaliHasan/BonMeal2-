@@ -5,7 +5,6 @@ import android.app.SearchManager;
 
 import android.content.res.Configuration;
 
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -14,13 +13,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,14 +29,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.R.color.black;
-import static android.view.View.X;
+
 
 
 public class MainActivity extends AppCompatActivity {
-    public static final String KITCHEN_CHALLENGE="تحدي الطبخ";
-    public static final String COOK_BOOK="كتاب الطبخ";
-    public static final String AT_FRIDGE="في الثلاجة";
-    public static final String MY_RECIPES="وصفاتي";
+    public static final String KITCHEN_CHALLENGE = "تحدي الطبخ";
+    public static final String COOK_BOOK = "كتاب الطبخ";
+    public static final String AT_FRIDGE = "في الثلاجة";
+    public static final String MY_RECIPES = "وصفاتي";
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -53,21 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        String mActivityTitle = getTitle().toString();
 
-        TextView tabOne = (TextView) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_title, null);
-        tabOne.setText("BONMEAL");
-        Typeface typeface=Typeface.createFromAsset(getAssets(),"fonts/GothamProBold.ttf");
-        tabOne.setTypeface(typeface);
 
-      //  getSupportActionBar().setTitle(mActivityTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER);
-
-        getSupportActionBar().setCustomView(tabOne);
+        setCustomTitle(R.color.textColorPrimary);
 
         addDrawerItems();
         setupDrawer();
@@ -78,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void addDrawerItems() {
 
-        String[] osArray = { KITCHEN_CHALLENGE ,COOK_BOOK,AT_FRIDGE,MY_RECIPES};
+        String[] osArray = {KITCHEN_CHALLENGE, COOK_BOOK, AT_FRIDGE, MY_RECIPES};
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -168,20 +156,30 @@ public class MainActivity extends AppCompatActivity {
                         int position = tab.getPosition();
                         switch (position) {
                             case 0:
-                                TextView tabOne = (TextView) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_tab, null);
-                                tabOne.setBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.kitchen_challenge));
-                                tabOne.setText(R.string.kitchen_challenge);
-                                tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cookchallenge_24, 0, 0, 0);
-                                tabLayout.getTabAt(0).setCustomView(tabOne);
+//                               TextView tabOne = (TextView) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_tab, null);
+//                                tabOne.setBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.kitchen_challenge));
+//                                tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cookchallenge_24, 0, 0, 0);
+//                                tabLayout.getTabAt(0).setCustomView(tabOne);
+                                tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getBaseContext(), R.color.kitchen_text));
+                                setCustomTitle(R.color.kitchen_text);
+                                tab.setText(R.string.kitchen_challenge);
+
+
                                 break;
                             case 1:
+                                tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getBaseContext(), R.color.cook_text));
                                 tab.setText(R.string.cook_book);
+                                setCustomTitle(R.color.cook_text);
                                 break;
                             case 2:
+                                tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getBaseContext(), R.color.fridge_text));
+                                setCustomTitle(R.color.fridge_text);
                                 tab.setText(R.string.fridge);
                                 break;
                             case 3:
+                                tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getBaseContext(), R.color.recipes_text));
                                 tab.setText(R.string.my_recipes);
+                                setCustomTitle(R.color.recipes_text);
                                 break;
                         }
                     }
@@ -210,11 +208,20 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onTabReselected(TabLayout.Tab tab) {
                         super.onTabReselected(tab);
-//                        int tabIconColor = ContextCompat.getColor(getBaseContext(), black);
-//                        tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
                     }
                 }
         );
+    }
+
+    void setCustomTitle(int color) {
+        int customColor= ContextCompat.getColor(getBaseContext(),color);
+        TextView tabOne = (TextView) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_title, null);
+        tabOne.setText("BONMEAL");
+        tabOne.setTextColor(customColor);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/GothamProBold.ttf");
+        tabOne.setTypeface(typeface);
+        getSupportActionBar().setCustomView(tabOne);
+
     }
 
 }
