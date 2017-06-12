@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Created by mhasan on 6/8/2017.
+ *
  */
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.DataHolder> {

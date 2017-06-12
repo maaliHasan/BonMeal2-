@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "979565091375",
+    "firebase_url": "https://bonmeal-24854.firebaseio.com",
+    "project_id": "bonmeal-24854",
+    "storage_bucket": "bonmeal-24854.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979565091375:android:f683703c0c4f0c1d",
+        "android_client_info": {
+          "package_name": "com.example.mhasan.bonmeal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979565091375-jnlqpibscg063o26ri0i4letrc6v2tff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8RfHndEztOoFJGNGh-euiwKlSvFKr6S4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

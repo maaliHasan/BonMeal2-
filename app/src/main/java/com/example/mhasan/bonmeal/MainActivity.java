@@ -17,17 +17,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-
 import android.widget.TextView;
 import android.widget.Toast;
-
 import static android.R.color.black;
 
 
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -60,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         addDrawerItems();
         setupDrawer();
         setViewPager();
-
 
     }
 
@@ -87,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 //  getSupportActionBar().setTitle("Navigation!");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
-
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
@@ -128,12 +125,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Pass the event to ActionBarDrawerToggle, if it returns
         // true, then it has handled the app icon touch event
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        // Handle your other action bar items...
+        return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
-        return super.onOptionsItemSelected(item);
     }
 
     private void setViewPager() {
@@ -163,13 +156,11 @@ public class MainActivity extends AppCompatActivity {
                                 tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getBaseContext(), R.color.kitchen_text));
                                 setCustomTitle(R.color.kitchen_text);
                                 tab.setText(R.string.kitchen_challenge);
-
-
                                 break;
                             case 1:
                                 tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getBaseContext(), R.color.cook_text));
-                                tab.setText(R.string.cook_book);
                                 setCustomTitle(R.color.cook_text);
+                                tab.setText(R.string.cook_book);
                                 break;
                             case 2:
                                 tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getBaseContext(), R.color.fridge_text));
@@ -188,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onTabUnselected(TabLayout.Tab tab) {
                         super.onTabUnselected(tab);
                         int position = tab.getPosition();
-
                         switch (position) {
                             case 0:
                                 tab.setText("");
@@ -204,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
                     }
-
                     @Override
                     public void onTabReselected(TabLayout.Tab tab) {
                         super.onTabReselected(tab);
@@ -217,9 +206,13 @@ public class MainActivity extends AppCompatActivity {
         int customColor= ContextCompat.getColor(getBaseContext(),color);
         TextView tabOne = (TextView) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_title, null);
         tabOne.setText("BONMEAL");
+//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewPager.LayoutParams.WRAP_CONTENT, ViewPager.LayoutParams.MATCH_PARENT);
+//        lp.setLayoutDirection(Gravity.CENTER) ;
         tabOne.setTextColor(customColor);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/GothamProBold.ttf");
         tabOne.setTypeface(typeface);
+       // tabOne.setLayoutDirection(Gravity.CENTER) ;
+      //  tabOne.setLayoutParams(lp);
         getSupportActionBar().setCustomView(tabOne);
 
     }
