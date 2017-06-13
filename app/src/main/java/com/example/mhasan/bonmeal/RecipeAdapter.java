@@ -20,12 +20,12 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.DataHolder> {
     private LayoutInflater inflater;
     private Context mContext;
-    public ArrayList<String> recipesList;
+    public ArrayList<Recipe> recipesList;
 
-    public RecipeAdapter(Context context) {
+    public RecipeAdapter(Context context,ArrayList<Recipe> recipesList) {
         this.mContext = context;
         inflater = LayoutInflater.from(mContext);
-        //this.recipesList =recipesList;
+        this.recipesList =recipesList;
     }
 
     @Override
@@ -36,19 +36,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.DataHolder
 
     @Override
     public void onBindViewHolder(DataHolder holder, int position) {
-        //String current= recipesList.get(position);
-        holder.title.setText("عصير الخوخ");
-        holder.imageView.setImageResource(R.drawable.ic_recipesone);
+        Recipe current= recipesList.get(position);
+        holder.title.setText(current.getName());
+       // holder.imageView.setImageResource(R.drawable.ic_recipesone);
 //        String img ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi7sMhM6eAFVFPPJrYrM1S2qM3eq3I4z1Pz9RtYS8VX_pvuhP2";
-//        Glide.with(mContext).load(img)
-//                .into(holder.imageView);
+        Glide.with(mContext).load(current.getImage())
+                .into(holder.imageView);
 
     }
 
 
     @Override
     public int getItemCount() {
-        return 1;
+        return recipesList.size();
     }
 
     class DataHolder extends RecyclerView.ViewHolder {

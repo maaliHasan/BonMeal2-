@@ -20,12 +20,13 @@ import java.util.ArrayList;
 
 /**
  * Created by mhasan on 6/7/2017.
- *
  */
 
 public class MyRecipes extends Fragment {
 
     private ArrayList<Recipe> recipes = new ArrayList<>();
+    private ArrayList<Ingredients> ingredients = new ArrayList<>();
+    private RecipeAdapter mRecipeAdapter;
 
     @Nullable
     @Override
@@ -37,7 +38,7 @@ public class MyRecipes extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView mRecipeRV = (RecyclerView) getActivity().findViewById(R.id.recipesRV);
-        RecipeAdapter mRecipeAdapter = new RecipeAdapter(getActivity());
+        mRecipeAdapter = new RecipeAdapter(getActivity(), recipes);
         mRecipeRV.setAdapter(mRecipeAdapter);
         mRecipeRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -46,7 +47,6 @@ public class MyRecipes extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 loadData(dataSnapshot);
-
             }
 
             @Override
@@ -69,9 +69,7 @@ public class MyRecipes extends Fragment {
      * @param dataSnapshot
      */
     public void loadData(DataSnapshot dataSnapshot) {
-
-        Log.d("loadData", String.valueOf(dataSnapshot.getChildrenCount()));
-
+        recipes.clear();
         for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
             Recipe recipe = new Recipe();
             Log.d("key", recipeSnapshot.getKey());
@@ -80,15 +78,31 @@ public class MyRecipes extends Fragment {
             recipe.setImage((String) recipeSnapshot.child("image").getValue());
             recipe.setAdUrl((String) recipeSnapshot.child("Ad-url").getValue());
             recipe.setIngredientCount((String) recipeSnapshot.child("ingredient-count").getValue());
+            recipe.setName((String) recipeSnapshot.child("name").getValue());
+            recipe.setRecipeIngredients((String) recipeSnapshot.child("recipe-ingredients").getValue());
+
+            DataSnapshot recipeIngredient = recipeSnapshot.child("ingredients");
+            for (DataSnapshot recipeShot : recipeIngredient.getChildren()) {
+                Log.d("key", recipeShot.getKey());
+                Ingredients ingredient = new Ingredients();
+                ingredient.setIngIcon((String) recipeShot.child("name").getValue());
+                ingredient.setType((String) recipeShot.child("type").getValue());
+                ingredients.add(ingredient);
+
+            }
+            recipe.setIngredients(ingredients);
             recipes.add(recipe);
 
         }
-
+        mRecipeAdapter.notifyDataSetChanged();
         updateView(recipes);
+
     }
 
     public void updateView(ArrayList<Recipe> recipes) {
+
         int size = recipes.size();
+
         Log.d(String.valueOf(size), "updateView: ");
         for (int i = 0; i < size; i++) {
             String imag = recipes.get(i).getImage();

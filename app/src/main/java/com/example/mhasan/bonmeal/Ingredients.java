@@ -7,9 +7,9 @@ package com.example.mhasan.bonmeal;
 
 public class Ingredients {
     public String ingIcon;
-    public int type;
+    public String type;
 
-    public Ingredients(String ingIcon, int type) {
+    public Ingredients(String ingIcon, String type) {
         this.ingIcon = ingIcon;
         this.type = type;
     }
@@ -21,7 +21,15 @@ public class Ingredients {
         return ingIcon;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
+    }
+
+    public void setIngIcon(String ingIcon) {
+        this.ingIcon = ingIcon;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
