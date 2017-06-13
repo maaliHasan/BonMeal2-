@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
  * of this recipes to registered fragments
  */
 
-public class DataAsynkTask extends AsyncTask<String, Void, String> {
+public class DataAsynkTask extends AsyncTask<String, Void, String>  {
     private static final String KET_INTENT_MSG = "Recipe_Obj_is_Retrieved";
     private ProgressDialog pDialog;
     private Context context;
@@ -39,21 +39,7 @@ public class DataAsynkTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String[] params) {
-         String result = null;
-        mDBReference = FirebaseDatabase.getInstance().getReference("Recipes");
-        mDBReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("recipes", dataSnapshot.getValue().toString());
-                //  result= dataSnapshot.getValue().toString();
-                System.out.println(dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        String result = null;
 
         return result != null ? result.toString() : null;
     }
@@ -63,4 +49,8 @@ public class DataAsynkTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
     }
+
+
+
+
 }

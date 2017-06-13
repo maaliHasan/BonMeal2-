@@ -14,6 +14,9 @@ public class Ingredients {
         this.type = type;
     }
 
+    public Ingredients() {
+    }
+
     public String getIngIcon() {
         return ingIcon;
     }
