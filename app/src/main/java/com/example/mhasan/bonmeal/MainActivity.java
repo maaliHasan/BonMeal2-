@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         final CategoryAdapter categoryAdapter = new CategoryAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(categoryAdapter);
+        viewPager.setCurrentItem(3);
 
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);

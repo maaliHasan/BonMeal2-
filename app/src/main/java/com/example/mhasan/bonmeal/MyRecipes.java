@@ -1,6 +1,8 @@
 package com.example.mhasan.bonmeal;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,16 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
+
+import static com.google.android.gms.internal.zzs.TAG;
 
 /**
  * Created by mhasan on 6/7/2017.
+ *
  */
 
 public class MyRecipes extends Fragment {
@@ -27,6 +35,7 @@ public class MyRecipes extends Fragment {
     private ArrayList<Recipe> recipes = new ArrayList<>();
     private ArrayList<Ingredients> ingredients = new ArrayList<>();
     private RecipeAdapter mRecipeAdapter;
+
 
     @Nullable
     @Override
@@ -41,6 +50,7 @@ public class MyRecipes extends Fragment {
         mRecipeAdapter = new RecipeAdapter(getActivity(), recipes);
         mRecipeRV.setAdapter(mRecipeAdapter);
         mRecipeRV.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
         DatabaseReference mDBReference = FirebaseDatabase.getInstance().getReference("Recipes").child("1");
         mDBReference.addValueEventListener(new ValueEventListener() {
@@ -72,7 +82,6 @@ public class MyRecipes extends Fragment {
         recipes.clear();
         for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
             Recipe recipe = new Recipe();
-            Log.d("key", recipeSnapshot.getKey());
             recipe.setHowToPrepare((String) recipeSnapshot.child("how-to-prepare").getValue());
             recipe.setAdImage((String) recipeSnapshot.child("Ad-image").getValue());
             recipe.setImage((String) recipeSnapshot.child("image").getValue());
@@ -83,7 +92,6 @@ public class MyRecipes extends Fragment {
 
             DataSnapshot recipeIngredient = recipeSnapshot.child("ingredients");
             for (DataSnapshot recipeShot : recipeIngredient.getChildren()) {
-                Log.d("key", recipeShot.getKey());
                 Ingredients ingredient = new Ingredients();
                 ingredient.setIngIcon((String) recipeShot.child("name").getValue());
                 ingredient.setType((String) recipeShot.child("type").getValue());
@@ -92,7 +100,6 @@ public class MyRecipes extends Fragment {
             }
             recipe.setIngredients(ingredients);
             recipes.add(recipe);
-
         }
         mRecipeAdapter.notifyDataSetChanged();
         updateView(recipes);
@@ -106,7 +113,7 @@ public class MyRecipes extends Fragment {
         Log.d(String.valueOf(size), "updateView: ");
         for (int i = 0; i < size; i++) {
             String imag = recipes.get(i).getImage();
-            Log.d("image", imag);
+            //Log.d("image", imag);
         }
 
 
