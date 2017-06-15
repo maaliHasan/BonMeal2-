@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.res.Configuration;
 
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    private DataAsyncTask asyncTask;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        asyncTask=(DataAsyncTask) new DataAsyncTask(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);

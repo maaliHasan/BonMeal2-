@@ -2,14 +2,17 @@ package com.example.mhasan.bonmeal;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.util.ArrayList;
-import java.util.zip.Inflater;
+
+import static com.google.android.gms.internal.zzs.TAG;
+
 
 /**
  * Created by mhasan on 6/15/2017.
@@ -21,10 +24,12 @@ public class IngredientAdapter  extends RecyclerView.Adapter<IngredientAdapter.I
     public Context mContex;
     public ArrayList<Recipe> mIngredienticon;
 
-    public IngredientAdapter(  Context mContex, ArrayList<Recipe> mIngredienticon) {
+
+    IngredientAdapter(Context mContex, ArrayList<Recipe> mIngredienticon) {
         this.mContex = mContex;
         mInflater=LayoutInflater.from(mContex);
         this.mIngredienticon = mIngredienticon;
+        Log.d(String.valueOf(mIngredienticon.size()), "IngredientAdapter: ");
     }
 
     @Override
@@ -50,16 +55,16 @@ public class IngredientAdapter  extends RecyclerView.Adapter<IngredientAdapter.I
         return 20;
     }
 
-    public class IngredientHolder extends RecyclerView.ViewHolder{
+    class IngredientHolder extends RecyclerView.ViewHolder{
 
         CircleImageView icon1,icon2,icon3;
         TextView txt1,txt2,txt3;
-        public IngredientHolder(View itemView) {
+        IngredientHolder(View itemView) {
             super(itemView);
             icon1=(CircleImageView)itemView.findViewById(R.id.icon_1);
             icon2=(CircleImageView)itemView.findViewById(R.id.icon_2);
             icon3=(CircleImageView)itemView.findViewById(R.id.icon_3);
-            txt1=(TextView)itemView.findViewById(R.id.icon1_text);
+             txt1=(TextView)itemView.findViewById(R.id.icon1_text);
             txt2=(TextView)itemView.findViewById(R.id.icon2_text);
             txt3=(TextView)itemView.findViewById(R.id.icon3_text);
         }
