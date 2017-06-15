@@ -1,19 +1,15 @@
 package com.example.mhasan.bonmeal;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +19,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import static com.google.android.gms.internal.zzs.TAG;
 
 /**
  * Created by mhasan on 6/7/2017.
@@ -102,22 +97,11 @@ public class MyRecipes extends Fragment {
             recipes.add(recipe);
         }
         mRecipeAdapter.notifyDataSetChanged();
-        updateView(recipes);
-
-    }
-
-    public void updateView(ArrayList<Recipe> recipes) {
-
-        int size = recipes.size();
-
-        Log.d(String.valueOf(size), "updateView: ");
-        for (int i = 0; i < size; i++) {
-            String imag = recipes.get(i).getImage();
-            //Log.d("image", imag);
-        }
 
 
     }
+
+
 
 
 }

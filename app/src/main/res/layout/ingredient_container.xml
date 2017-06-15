@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:orientation="vertical"
+    android:layout_width="80dp"
+    android:layout_height="300dp"
+    android:layout_marginBottom="3dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="3dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:clipChildren="false"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:id="@+id/icon1_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icon_1"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:hint="خيار" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon_2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/icon1_text" />
+
+        <TextView
+            android:id="@+id/icon2_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icon_2"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:hint="لحم" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon_3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/icon2_text" />
+
+        <TextView
+            android:id="@+id/icon3_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icon_3"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:hint="لحم" />
+
+    </RelativeLayout>
+</LinearLayout>

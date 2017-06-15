@@ -19,9 +19,6 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-import static com.google.android.gms.internal.zzs.TAG;
-import static java.lang.System.load;
-
 /**
  * Created by mhasan on 6/8/2017.
  *

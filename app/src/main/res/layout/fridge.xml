@@ -10,16 +10,17 @@
         android:layout_weight="1">
 
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/ingredientIcons"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ingredientIconsRV"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        >
 
-    </RelativeLayout>
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
